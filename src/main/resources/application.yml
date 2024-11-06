@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: Spring Web MVC
+  datasource:
+    url: jdbc:mysql://localhost:3306/springmvc2?createDatabaseIfNoExist=true
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  thymeleaf:
+    cache: false
+
+server:
+  port: 8082

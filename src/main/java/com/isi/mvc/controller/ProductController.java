@@ -4,12 +4,14 @@ package com.isi.mvc.controller;
 import com.isi.mvc.dtos.ProductDTO;
 import com.isi.mvc.model.Product;
 import com.isi.mvc.service.ProductService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -18,20 +20,28 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService service ;
-    @PostMapping(path = "/save")
-    public String addProduct(Model model, ProductDTO productDTO) {
-        String productRef = service.addProduct(productDTO);
-        model.addAttribute("message", "Produit ajouté avec succès ! Référence : " + productRef);
-        return "redirect:/product/index";
+    @PostMapping("/product-create")
+    public String addProduct(
+           @Valid @ModelAttribute("product") ProductDTO productDTO,
+           BindingResult bindingResult,
+           Model model
+    )
+    {
+        if (bindingResult.hasErrors()){
+            return "product-create";
+        }
+        service.addProduct(productDTO);
+        return "redirect:/index";
     }
 
-    @GetMapping("/formProduct")
+    @GetMapping("/product-create")
     public String formProduct (Model model) {
-        model.addAttribute("product",new Product());
-        return "formProduct" ;
+        Product product = new Product();
+        model.addAttribute("product", product);
+        return "product-create" ;
     }
 
-    @GetMapping(path = "/index")
+    @GetMapping("/index")
     public String listProducts (Model model) {
         List<ProductDTO> products = service.listProducts();
         model.addAttribute("products", products);

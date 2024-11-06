@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="template"
+      xmlns:layout="http://www.nz.net.ultraq.thymeleaf/layout"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Form Product</title>
+    <link  rel="stylesheet" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header text-center">
+                <h2>Ajouter un Produit</h2>
+            </div>
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <form method="post" th:action="@{save}" class="col-md-6">
+                        <div class="mb-3">
+                            <label for="ref" class="form-label">Reference</label>
+                            <input type="text" name="ref" id="ref" th:value="${product.ref}" class="form-control" placeholder="Reference du product">
+                            <span class="text-danger" th:errors="${product.ref}"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" name="name" id="name" th:value="${product.name}" class="form-control" placeholder="Nom de produit">
+                            <span class="text-danger" th:errors="${product.name}"></span>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -16,4 +16,12 @@ public class ProductMapper {
                 .name(productDTO.getName())
                 .build();
     }
+
+    public ProductDTO fromProduct(Product product) {
+        return ProductDTO.builder()
+                .id(product.getId())
+                .ref(product.getRef())
+                .name(product.getName())
+                .build();
+    }
 }

@@ -7,6 +7,9 @@ import com.isi.mvc.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
@@ -17,5 +20,12 @@ public class ProductServiceImpl implements ProductService {
     public String addProduct(ProductDTO productDTO) {
         var product = repository.save(mapper.toProduct(productDTO));
         return product.getRef();
+    }
+    @Override
+    public List<ProductDTO> listProducts() {
+        return repository.findAll()
+                .stream()
+                .map(mapper::fromProduct)
+                .collect(Collectors.toList());
     }
 }

@@ -5,5 +5,6 @@ import com.isi.mvc.dtos.ProductDTO;
 import java.util.List;
 
 public interface ProductService {
-    public String addProduct(ProductDTO productDTO);
+    String addProduct(ProductDTO productDTO);
+    List<ProductDTO> listProducts();
 }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class ProductController {
@@ -29,10 +31,11 @@ public class ProductController {
         return "formProduct" ;
     }
 
-//    @GetMapping("/")
-//    public String home (){
-//        return "redirect:/index";
-//    }
-
+    @GetMapping(path = "/index")
+    public String listProducts (Model model) {
+        List<ProductDTO> products = service.listProducts();
+        model.addAttribute("products", products);
+        return "listProducts";
+    }
 
 }

@@ -28,6 +28,7 @@ public class ProductController {
     )
     {
         if (bindingResult.hasErrors()){
+            model.addAttribute("product",productDTO);
             return "product-create";
         }
         service.addProduct(productDTO);

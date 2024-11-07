@@ -38,6 +38,7 @@
                                     class="form-control"
                                     placeholder="Nom de produit">
                            <p th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}"></p>
+                            <p th:if="${nameError}" class="text-danger" th:text="${nameError}"></p>
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary">Enregistrer</button>

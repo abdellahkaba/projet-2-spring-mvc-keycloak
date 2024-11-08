@@ -6,6 +6,8 @@ services:
       MYSQL_ROOT_PASSWORD: password
     ports:
       - "3306:3306"
+    networks:
+      - spring-mvc
     volumes:
       - spring_mysql_data:/var/lib/mysql
 
@@ -24,6 +26,27 @@ services:
       - mysql-spring-mvc-2
     restart: unless-stopped
 
+  keycloak:
+    container_name: keycloak
+    image: quay.io/keycloak/keycloak:24.0.4
+    ports:
+      - 8181:8080
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    networks:
+      - spring-mvc
+    volumes:
+      - ./docker/keycloak/realms/:/opt/keycloak/data/import/
+    command:
+      - "start-dev"
+
+networks:
+  spring-mvc:
+    driver: bridge
+
 volumes:
   spring_mysql_data:
+    driver: local
+  keycloak:
     driver: local

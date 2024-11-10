@@ -4,9 +4,9 @@ server:
 
 # Configuration Keycloak
 keycloak:
-  realm: spring-mvc-2-realm
+  realm: spring-mvc2-realm
   auth-server-url: "http://localhost:8181/"
-  resource: spring-mvc2
+  resource: spring-mvc-2
   public-client: true
   principal-attribute: name
 

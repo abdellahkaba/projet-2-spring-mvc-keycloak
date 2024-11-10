@@ -36,8 +36,6 @@ services:
       KEYCLOAK_ADMIN_PASSWORD: admin
     networks:
       - spring-mvc
-    volumes:
-      - ./docker/keycloak/realms/:/opt/keycloak/data/import/
     command:
       - "start-dev"
 

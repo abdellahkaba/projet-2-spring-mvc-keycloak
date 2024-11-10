@@ -4,7 +4,7 @@ package com.isi.mvc.controller;
 import com.isi.mvc.dtos.ProductDTO;
 import com.isi.mvc.model.Product;
 import com.isi.mvc.service.ProductService;
-import jakarta.validation.Valid;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+
 public class ProductController {
 
     private final ProductService service ;
@@ -32,7 +34,7 @@ public class ProductController {
             return "product-create";
         }
         service.addProduct(productDTO);
-        return "redirect:/index";
+        return "redirect:/products";
     }
 
     @GetMapping("/product-create")
@@ -42,11 +44,16 @@ public class ProductController {
         return "product-create" ;
     }
 
-    @GetMapping("/index")
+    @GetMapping("/products")
     public String listProducts (Model model) {
         List<ProductDTO> products = service.listProducts();
         model.addAttribute("products", products);
-        return "listProducts";
+        return "products";
+    }
+
+    @GetMapping("/")
+    public String index(){
+        return "index";
     }
 
 }

@@ -8,7 +8,7 @@ Prérequis pour démarrer le projet:
     MysQL 8+
 Objectifs
 
-    Ajout et affichage de la liste de la table produits dans dans une base de donnée
+    Ajout et affichage de la liste de la table produits dans une base de donnée
     Gérer la sécurité avec Keycloak
 
 Test de Quelques interfaces

@@ -1,6 +1,6 @@
 # Configuration du serveur
 server:
-  port: 8082
+  port: 8092
 
 # Configuration Keycloak
 keycloak:
